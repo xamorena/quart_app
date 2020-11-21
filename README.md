@@ -1,2 +1,3 @@
-# quart_app
+# Quart Application "quart_app"
+
 Web Application based on Quart
