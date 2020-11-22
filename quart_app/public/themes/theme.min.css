@@ -1,30 +1,62 @@
 body {
-    padding-top: 3.5rem;
+    width: 100%;
+    /*padding-top: 4rem;*/
 }
 
 .site-theme {
     width: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
-.site-header {
+.site-heade, .header {
     width: 100%;
 }
 
 .site-content {
-    min-height: 72vh;
+    min-height: calc(100vh - 6rem);
 }
 
-.site-footer {
+.site-footer, .footer {
     width: 100%;
+    min-height: 6rem;
+    max-height: 6rem;
 }
 
-.i-message {
-    background-color: #FDFDFD;
-    text-align: end; 
+.message .message-date,
+.message .message-from {
+        font-size: 0.9rem;
 }
-.a-message {
-  background-color: #DFDFDF;  
-  text-align: start; 
+
+.message .message-body {
+    font-size: 1.0rem;
+}
+
+li.message.a-message {
+    padding-right: 10%;
+    float: right;
+    margin-bottom: 2px;
+    overflow: auto !important;
+}
+
+li.message.a-message .message-card {
+    padding-bottom: 2px;
+}
+
+li.message.i-message {
+    padding-left: 10%;
+    float: left;
+    margin-bottom: 2px;
+    overflow: auto !important;
+}
+
+li.message.i-message .message-card {
+    padding-bottom: 2px;
+} 
+
+.workspace {
+    width: 100%;
+    min-height: 70vh;
+    border: 1px solid var(--dark);
+    cursor: crosshair;
 }

@@ -43,7 +43,7 @@
     {% block page_header %}{% endblock %}
 
     {% block site_header %}
-    <header class="site-header">
+    <header class="site-header pb-2">
         {% block header %}
         {% include 'components/navbar_header.html' %}
         {% endblock %}
@@ -51,16 +51,24 @@
     {% endblock %}
 
     {% block body %}
-    <main class="site-content" id="content">
-        {% block content %}{% endblock %}
+    <main class="site-content container-fluid" id="content">
+        <div class="row">
+            <div class="col-12">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
         {% block site_alerts %}
-        {% include 'components/messages.html' %}
+        <div class="row">
+            <div class="col-12">
+                {% include 'components/alerts.html' %}
+            </div>
+        </div>
         {% endblock %}
     </main>
     {% endblock %}
 
     {% block site_footer %}
-    <footer class="site-footer">
+    <footer class="site-footer pt-2">
         {% block footer %}
         {% include 'components/navbar_footer.html' %}
         {% endblock %}
@@ -77,7 +85,7 @@
     <script crossorigin="anonymous" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='/lib/theme.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='/lib/messages.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='/lib/alerts.min.js') }}"></script>
     {% if cms is defined %}
     {% block scripts %}
     {{cms.site.scripts | safe}}

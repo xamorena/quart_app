@@ -1,25 +1,29 @@
 site:
-  title: Quart-App
+  title: On Boarding
   brand:
-    label: Brand
+    label: On Boarding
     image: /public/images/brand.png
   seo:
     robots: allow
     keywords: quart
-    description: Quart Aplication
+    description: Chat and collaborative workspace based on Quart
     favicon: /public/images/favicon.ico
   theme: default
   themes:
     - default
   styles: ''
   scripts: ''
-  copyright: 2000-2020 Company
+  copyright: 1998-2020 XAM
 menus:
   util:
-    - name: hone
+    - name: home
       path: /
       text: Home
       icon: fa fa-home
+    - name: board
+      path: /board
+      text: Board
+      icon: fa fa-board
   auth:
     - name: login
       path: /auth/login
@@ -29,5 +33,9 @@ menus:
     - name: terms
       path: /terms
       text: Terms
+      icon: fa fa-file
+    - name: privacy
+      path: /privacy
+      text: Privacy
       icon: fa fa-key
   main: []

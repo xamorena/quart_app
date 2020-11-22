@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+
+{% block stylesheets %}
+{{ super() }}
+{% endblock %}
+
+{% block site_drawer %}{% endblock %}
+
+{% block body %}
+<main class="site-content container-fluid" id="content">
+    <div class="row">
+        <div class="col d-flex flex-column">
+            {% block site_dossiers %}
+            <div class="d-flex flex-column flex-md-row">
+                <div class="col-sm-12 col-md-3">
+                    {% include 'components/dossiers.html' %}
+                </div>
+                <div class="col-sm-12 col-md-9">
+                    {% include 'components/workspace.html' %}
+                </div>
+            </div>                        
+            {% endblock %}
+            {% block content %}
+            {{ page.content | safe }}
+            {% endblock %}
+        </div>
+        {% block site_messages %}
+        <aside class="col-sm-12 col-md-4">
+            {% include 'components/messages.html' %}
+        </aside>
+        {% endblock %}
+    </div>
+    {% block site_alerts %}
+    <div class="row">
+        <div class="col-12">
+            {% include 'components/alerts.html' %}
+        </div>
+    </div>
+    {% endblock %}
+</main>
+{% endblock %}
+
+{% block javascripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='/lib/events.min.js') }}"></script>
+<script src="{{ url_for('static', filename='/lib/messages.min.js') }}"></script>
+<script src="{{ url_for('static', filename='/lib/dossiers.min.js') }}"></script>
+<script src="{{ url_for('static', filename='/lib/painters.min.js') }}"></script>
+{% endblock %}

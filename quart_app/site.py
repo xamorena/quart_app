@@ -27,11 +27,8 @@ site_bp = Blueprint("site", __name__, url_prefix="/")
 
 @site_bp.route('/')
 async def site_home():
-    session['enabled'] = request.args.get("enabled", True)
-    session['user_id'] = str(uuid.uuid4().hex)
     context = dict(cms=get_cms())
     context['page'] = get_page('home.md')
-    context['uuid'] = session['user_id']
     return await render_template('home.html', **context)
 
 
@@ -56,14 +53,24 @@ async def site_terms():
     return await render_template('page.html', **context)
 
 
-@site_bp.route('/messages', methods=['POST'])
-async def post_messages():
+@site_bp.route('/board')
+async def site_board():
+    context = dict(cms=get_cms())
+    session['enabled'] = request.args.get("enabled", True)
+    session['user_id'] = str(uuid.uuid4().hex)
+    context['page'] = get_page('board.md')
+    context['uuid'] = session['user_id']
+    return await render_template('board.html', **context)
+
+
+@site_bp.route('/api/v1.0/message', methods=['POST'])
+async def post_message():
     posted = False
     data = await request.form
-    logger.warning(f"Message posted: {data}")
     for queue in current_app.clients:
         if data is not None:
             data["posted"] = time.asctime().format("YYYY-M-DD hh:mm:ss")
+            data["schema"] = "message"
             try:
                 md = markdown.Markdown(extensions=["meta", "extra"])
                 data["message"] = md.convert(data.get("message", ""))
@@ -73,10 +80,68 @@ async def post_messages():
             msg = json.dumps(data)
             await queue.put(msg)
             posted = True
+            logger.warning(f"Message posted: {msg}")
     return jsonify(posted)
 
 
-@site_bp.route('/messages', methods=['GET'])
+@site_bp.route('/api/v1.0/dossier', methods=['POST'])
+async def post_dossier():
+    posted = False
+    data = await request.form
+    for queue in current_app.clients:
+        if data is not None:
+            data["posted"] = time.asctime().format("YYYY-M-DD hh:mm:ss")
+            data["schema"] = "dossier"
+            try:
+                files = await request.files
+                dossier = dict(url=f"/api/v1.0/dossiers/{data.get('name')}")
+                for f in files:
+                    dossier[f.name] = f
+                data["dossier"] = dossier
+                data["uploaded"] = True
+            except Exception as _e:
+                data["uploaded"] = False
+            msg = json.dumps(data)
+            await queue.put(msg)
+            posted = True
+            logger.warning(f"Dossier posted: {msg}")
+    return jsonify(posted)
+
+
+@site_bp.route('/api/v1.0/painter', methods=['POST'])
+async def post_painter():
+    posted = False
+    data = await request.get_json()
+    for queue in current_app.clients:
+        if data is not None:
+            data["posted"] = time.asctime().format("YYYY-M-DD hh:mm:ss")
+            data["schema"] = "painter"
+            try:
+                data["conveted"] = True
+            except Exception as _e:
+                data["conveted"] = False
+            msg = json.dumps(data)
+            await queue.put(msg)
+            posted = True
+            logger.warning(f"Painter posted: {msg}")
+    return jsonify(posted)
+
+
+@site_bp.route('/api/v1.0/dossiers', methods=['GET'])
+async def list_dossiers():
+    dossiers = []
+    return jsonify(dossiers)
+
+
+
+@site_bp.route('/api/v1.0/dossiers/<path:filename>', methods=['GET'])
+async def find_dossier(filename):
+    dossier = dict(url="", file=filename)
+    return jsonify(dossier)
+
+
+
+@site_bp.route('/api/v1.0/events', methods=['GET'])
 async def list_messages():
     queue = asyncio.Queue()
     current_app.clients.add(queue)
@@ -86,7 +151,6 @@ async def list_messages():
         while enabled:
             msg = await queue.get()
             if msg is not None:
-                logger.warning(f"Broadcast message: {msg}")
                 event = ServerSentEvent(msg)
                 yield event.encode()
 
