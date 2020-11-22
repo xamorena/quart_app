@@ -1,8 +1,18 @@
-<div class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2016-2020 Company Name</p>
-    <ul class="list-inline">
-        <li class="list-inline-item"><a href="/privacy">Privacy</a></li>
-        <li class="list-inline-item"><a href="/terms">Terms</a></li>
-        <li class="list-inline-item"><a href="/support">Support</a></li>
-    </ul>
+<div class="container-fluid my-5 pt-5">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <ul class="list-inline">
+                {% for link in cms.menus.get("info", []) %}
+                <li class="list-inline-item">
+                    <a href="{{link.path}}">
+                        <span class="{{link.icon}}"></span>&nbsp;{{link.text}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <p class="mb-1">© {{cms.site.copyright}}</p>
+        </div>
+    </div>
 </div>

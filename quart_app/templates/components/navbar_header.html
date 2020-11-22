@@ -1,8 +1,29 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Brand</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/">Home</a>
-    </nav>
-    <a class="btn btn-outline-primary" href="/auth/login">Sign In</a>
-    <a class="btn btn-outline-secondary" href="/auth/register">Register</a>
-</div>
+<nav class="navbar navbar-expand-md fixed-top navbar-light">
+    <a class="navbar-brand" href="/">{{cms.site.brand.label}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop"
+        aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTop">
+        <ul class="navbar-nav mr-auto">
+            {% for link in cms.menus["main"] %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{link.path}}"><span class="{{link.icon}}"></span>&nbsp;{{link.text}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% for link in cms.menus["util"] %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{link.path}}"><span class="{{link.icon}}"></span>&nbsp;{{link.text}}</a>
+            </li>
+            {% endfor %}
+            {% for link in cms.menus["auth"] %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{link.path}}"><span class="{{link.icon}}"></span>&nbsp;{{link.text}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

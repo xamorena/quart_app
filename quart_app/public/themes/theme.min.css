@@ -1,0 +1,21 @@
+body {
+    padding-top: 3.5rem;
+}
+
+.site-theme {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.site-header {
+    width: 100%;
+}
+
+.site-content {
+    min-height: 72vh;
+}
+
+.site-footer {
+    width: 100%;
+}

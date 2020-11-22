@@ -1,0 +1,33 @@
+site:
+  title: Quart-App
+  brand:
+    label: Brand
+    image: /public/images/brand.png
+  seo:
+    robots: allow
+    keywords: quart
+    description: Quart Aplication
+    favicon: /public/images/favicon.ico
+  theme: default
+  themes:
+    - default
+  styles: ''
+  scripts: ''
+  copyright: 2000-2020 Company
+menus:
+  util:
+    - name: hone
+      path: /
+      text: Home
+      icon: fa fa-home
+  auth:
+    - name: login
+      path: /auth/login
+      text: Login
+      icon: fa fa-sign-in-alt
+  info:
+    - name: terms
+      path: /terms
+      text: Terms
+      icon: fa fa-key
+  main: []

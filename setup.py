@@ -12,5 +12,4 @@ setup(name='quart_app',
           'quart'
       ],
       zip_safe=False,
-      scripts=['quart_app=quart_app.application'],
       entry_points={})

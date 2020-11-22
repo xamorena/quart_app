@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+
+{% block stylesheets %}
+{{ super() }}
+{% endblock %}
+
+{% block site_drawer %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            {{ page.content | safe }}
+        </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ super() }}
+{% endblock %}
