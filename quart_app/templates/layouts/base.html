@@ -52,10 +52,10 @@
 
     {% block body %}
     <main class="site-content" id="content">
+        {% block content %}{% endblock %}
         {% block site_alerts %}
         {% include 'components/messages.html' %}
         {% endblock %}
-        {% block content %}{% endblock %}
     </main>
     {% endblock %}
 

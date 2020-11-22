@@ -14,6 +14,7 @@ import os
 from .extensions import get_db_engine
 from .site import site_bp
 from .auth import auth_bp
+from .config import Config
 import logging
 import click
 
@@ -30,6 +31,8 @@ def create_app():
 
     """
     app = Quart(__name__, static_folder="public")
+    app.config.from_object(Config())
+    app.clients = set()
     app.register_blueprint(site_bp)
     app.register_blueprint(auth_bp)
 

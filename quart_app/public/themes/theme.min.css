@@ -19,3 +19,12 @@ body {
 .site-footer {
     width: 100%;
 }
+
+.i-message {
+    background-color: #FDFDFD;
+    text-align: end; 
+}
+.a-message {
+  background-color: #DFDFDF;  
+  text-align: start; 
+}
