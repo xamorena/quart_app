@@ -1,9 +1,3 @@
 # Privacy
 
-...
-
-## Cookies Privacy
-
-...
-
-Thank you ..
+TODO: Write website privacy here
