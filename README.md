@@ -13,6 +13,5 @@ quart run
 With hypercorn:
 
 ```
-hypercorn -w 4 quart_app.application:application
+hypercorn -b 0.0.0.0:5000 -w 1 quart_app.application:application
 ```
-
