@@ -65,3 +65,7 @@ li.message.i-message .message-card {
     border: 1px solid var(--dark);
     cursor: crosshair;
 }
+
+aside {
+    overflow-y: scroll !important;
+}
