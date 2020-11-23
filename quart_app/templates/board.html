@@ -12,10 +12,19 @@
         <div class="col d-flex flex-column">
             {% block site_dossiers %}
             <div class="d-flex flex-column flex-md-row">
-                <div class="col-sm-12 col-md-3">
+                <div id="dossiersPanel" class="col-sm-12 col-md-3 h-collapse collapse">
                     {% include 'components/dossiers.html' %}
                 </div>
-                <div class="col-sm-12 col-md-9">
+                <div class="col-sm-12 col-md">
+                    <nav class="d-flex flex-row justify-content-between">
+                        <a href="#dossiersPanel" role="button" aria-expanded="false" class="btn btn-default" data-toggle="collapse" aria-target="#dossiersPanel">
+                            <span class="fa fa-bars"></span>
+                        </a>
+                        &nbsp;
+                        <a href="#messagesPanel" role="button" aria-expanded="false" class="btn btn-default" data-toggle="collapse" aria-target="#messagesPanel">
+                            <span class="fa fa-bars"></span>
+                        </a>
+                    </nav>        
                     {% include 'components/workspace.html' %}
                 </div>
             </div>                        
@@ -25,7 +34,7 @@
             {% endblock %}
         </div>
         {% block site_messages %}
-        <aside class="col-sm-12 col-md-4">
+        <aside id="messagesPanel" class="col-sm-12 col-md-3 h-collapse collapse">
             {% include 'components/messages.html' %}
         </aside>
         {% endblock %}

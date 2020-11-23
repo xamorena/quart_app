@@ -23,7 +23,7 @@ menus:
     - name: board
       path: /board
       text: Board
-      icon: fa fa-board
+      icon: fa fa-pen
   auth:
     - name: login
       path: /auth/login
