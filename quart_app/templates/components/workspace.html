@@ -1,3 +1,26 @@
-<form id="dossierForm" name="dossierForm" class="d-flex flex-column">
-    <canvas id="workspace" class="img-fluid workspace"></canvas>
-</form>
+<div class="d-flex flex-column">
+    <div class="card">
+        <div class="card-body">
+            <form id="dossierForm" name="dossierForm" class="d-flex flex-column">
+                <nav class="d-flex flex-row justify-content-between">
+                    <a href="#dossiersPanel" role="button" aria-expanded="false" class="btn btn-default"
+                        data-toggle="collapse" aria-target="#dossiersPanel">
+                        <span class="fa fa-bars"></span>
+                    </a>
+                    <div class="btn-group">
+                        {% for wtb in ['pen', 'hand', 'file'] %}
+                        <a href="#" role="button" class="btn btn-default ws-{{wtb}}">
+                        <span class="fa fa-{{wtb}}"></span>
+                        {% endfor %}
+                    </a>                        
+                    </div>
+                    <a href="#messagesPanel" role="button" aria-expanded="false" class="btn btn-default"
+                        data-toggle="collapse" aria-target="#messagesPanel">
+                        <span class="fa fa-bars"></span>
+                    </a>
+                </nav>
+                <canvas id="workspace" class="img-fluid workspace" width="1280" height="1024"></canvas>
+            </form>
+        </div>
+    </div>
+</div>

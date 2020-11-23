@@ -13,6 +13,7 @@ from quart import Quart
 import os
 from .extensions import get_db_engine
 from .site import site_bp
+from .user import user_bp
 from .auth import auth_bp
 from .config import Config
 import logging
@@ -35,6 +36,7 @@ def create_app():
     app.clients = set()
     app.register_blueprint(site_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(user_bp)
 
     @app.cli.command('init_db', with_appcontext=True)
     def init_db():

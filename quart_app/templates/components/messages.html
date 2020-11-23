@@ -1,20 +1,31 @@
 <div class="d-flex flex-column">
-    <form id="messageForm" action="/api/v1.0/message" method="POST">
-        <input name="user_id" id="user_id" type="hidden" value="{{uuid}}" class="d-none">
-        <div class="form-group">
-            <label for="message">Message: </label>
-            <textarea name="message" id="message" rows="5" class="form-control"
-                placeholder="Markdown content goes here"></textarea>
+    <div class="card mb-2">
+        <h5 class="card-header">New Message</h5>
+        <div class="card-body">
+            <form id="messageForm" action="/api/v1.0/message" method="POST">
+                <input name="user_id" id="user_id" type="hidden" value="{{user.id}}" class="d-none">
+                <input name="user_name" id="user_name" type="hidden" value="{{user.name}}" class="d-none">
+                <div class="form-row">
+                    <label for="message">From</label>
+                    <div class="form-control">{{user.name}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Content</label>
+                    <textarea name="message" id="message" rows="5" class="form-control"
+                        placeholder="Markdown content goes here"></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="fa fa-save"></span>&nbsp;Send Message
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="form-row">
-            <small class="text-muted">From : {{uuid}}</small>
+    </div>
+    <div class="card mb-2">
+        <h5 class="card-header">Messages</h5>
+        <div class="card-body">
+            <ul id="messages" class="list-group"></ul>
         </div>
-        <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">
-                <span class="fa fa-save"></span>&nbsp;Send
-            </button>
-        </div>
-    </form>
-    <hr />
-    <ul id="messages" class="list-group"></ul>
+    </div>
 </div>

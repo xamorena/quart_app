@@ -21,7 +21,7 @@ menus:
       text: Home
       icon: fa fa-home
     - name: board
-      path: /board
+      path: /user//board
       text: Board
       icon: fa fa-pen
   auth:

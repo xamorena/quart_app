@@ -1,10 +1,10 @@
-<div class="footer container-fluid bg-dark text-white">
+<div class="footer container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-8">
             <ul class="list-inline">
                 {% for link in cms.menus.get("info", []) %}
                 <li class="list-inline-item">
-                    <a class="text-white" href="{{link.path}}">
+                    <a class="text-primary" href="{{link.path}}">
                         <span class="{{link.icon}}"></span>&nbsp;{{link.text}}
                     </a>
                 </li>
@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="col-sm-12 col-md-4">
-            <p class="mb-1 text-white">© {{cms.site.copyright}}</p>
+            <p class="mb-1 text-dark">© {{cms.site.copyright}}</p>
         </div>
     </div>
 </div>
